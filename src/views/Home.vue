@@ -483,6 +483,10 @@ article {
     align-items: flex-start;
     margin-bottom: 0.8rem;
 
+    @media screen and (max-width: 40rem) {
+      flex-wrap: wrap;
+    }
+
     > .right {
       width: 20rem;
       margin-left: 1rem;
