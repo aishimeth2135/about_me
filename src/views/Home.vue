@@ -74,6 +74,7 @@
         </div>
       </div>
     </section>
+    <cy-hr />
     <section class="column exp" data-id="2">
       <fieldset class="exp-content half">
         <legend>
@@ -81,7 +82,7 @@
             網站前端
           </cy-icon-text>
         </legend>
-        <div class="content">
+        <div class="content items">
           <div class="item">Javascript、HTML5、CSS3</div>
           <div class="item">Node.js、Webpack</div>
           <div class="item">Vue.js</div>
@@ -96,7 +97,7 @@
             後端伺服器
           </cy-icon-text>
         </legend>
-        <div class="content">
+        <div class="content items">
           <div class="item">Express (Node.js)</div>
           <div class="item">Flask (Python)</div>
         </div>
@@ -128,7 +129,7 @@
             學校實驗室：智慧居家
           </cy-icon-text>
         </legend>
-        <div class="content">
+        <div class="content items">
           <div class="item">
             在網頁端串接攝影機的串流API，來播放攝影機的即時畫面。
           </div>
@@ -169,6 +170,48 @@
           <br />此論文投稿到TANET2020台灣網際網路研討會。
         </div>
       </fieldset>
+    </section>
+    <cy-hr />
+    <section class="column works" data-id="3">
+      <div class="content-top">
+        <div class="left">
+          <div class="container-1">
+            <div class="title">
+              <span>Cy's Grimoire</span>
+            </div>
+            <div class="content">
+              此網站為針對一款MMORPG類型的手機遊戲「Toram Online」製作的工具型網站，裡面包含該遊戲各種資料的查詢及各種系統的模擬器。 該網站的所有程式及介面設計皆由我獨力完成。
+            </div>
+          </div>
+        </div>
+        <div class="right">
+          <img src="imgs/achievement_img1.jpg">
+        </div>
+      </div>
+      <div class="content">
+        <div class="container-1">
+          <div class="title">
+            <span>特色</span>
+          </div>
+          <div class="content items">
+            <div class="item">基於多頁面應用程式、單一頁面多模組的系統架構設計。</div>
+            <div class="item">有多種模擬遊戲內系統的模擬器。</div>
+            <div class="item">支援PWA。</div>
+            <div class="item">支援完全的離線瀏覽。</div>
+            <div class="item">以Google試算表作為資料庫，讓玩家參與資料的輸入。</div>
+            <div class="item">直接聽取來自使用者的意見，持續進行更新及優化。</div>
+            <div class="item">可支援多國語言的系統。</div>
+          </div>
+        </div>
+        <div class="container-1">
+          <div class="title">
+            <span>狀態</span>
+          </div>
+          <div class="content items">
+            目前常態使用人數約一千四百人，週瀏覽量約一萬七千。其中包含台灣、中國及馬來西亞等世界各地的玩家。
+          </div>
+        </div>
+      </div>
     </section>
   </article>
 </template>
@@ -219,6 +262,11 @@ export default {
           id: 2,
           title: '經驗',
           icon: 'ic-baseline-web-asset'
+        },
+        {
+          id: 3,
+          title: '作品',
+          icon: 'ic-baseline-web-asset'
         }
       ]
     }
@@ -232,7 +280,13 @@ export default {
     };
     const callback = function(entries) {
       console.log(entries);
-      const t = entries.sort((a, b) => b.intersectionRatio  - a.intersectionRatio)[0];
+      const t = entries
+        .sort((a, b) => {
+          const r = b.intersectionRatio  - a.intersectionRatio;
+          if (r == 0)
+            return a.boundingClientRect.top - b.boundingClientRect.top;
+          return r;
+        })[0];
       if (t.intersectionRatio > 0.5) {
         const id = parseInt(t.target.getAttribute('data-id'), 10);
         self.currentTitleData = self.titleData.find(p => p.id == id);
@@ -298,6 +352,29 @@ article {
 
   & + & {
     margin-top: 1.4rem;
+  }
+}
+
+.items {
+  > .item {
+    padding-left: 1rem;
+    position: relative;
+
+    & + .item {
+      margin-top: 0.2rem;
+    }
+
+    &::before {
+      content: '';
+      display: inline-block;
+      height: 0.3rem;
+      width: 0.3rem;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 0.2rem;
+      background-color: var(--primary-light);
+    }
   }
 }
 
@@ -396,26 +473,23 @@ article {
 
     > .content {
       padding: 0.2rem 1rem;
+    }
+  }
+}
 
-      > .item {
-        padding-left: 1rem;
-        position: relative;
+.works {
+  > .content-top {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
 
-        & + .item {
-          margin-top: 0.2rem;
-        }
+    > .right {
+      width: 20rem;
+      margin-left: 1rem;
+      flex-shrink: 0;
 
-        &::before {
-          content: '';
-          display: inline-block;
-          height: 0.3rem;
-          width: 0.3rem;
-          border-radius: 50%;
-          position: absolute;
-          left: 0;
-          top: 0.2rem;
-          background-color: var(--primary-light);
-        }
+      > img {
+        width: 100%;
       }
     }
   }
