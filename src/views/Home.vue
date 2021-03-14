@@ -34,6 +34,12 @@
                 Cy's Grimoire
               </cy-icon-text>
             </a>
+            <a href="https://drive.google.com/drive/folders/1BVMmaIQF2rd9G9jrqt0TueKK93yWdV4U?usp=sharing"
+              target="_blank">
+              <cy-icon-text iconify-name="bx-bx-link-external" text-color="light-3">
+                其他檔案
+              </cy-icon-text>
+            </a>
           </div>
         </div>
       </div>
