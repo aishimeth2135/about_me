@@ -78,7 +78,7 @@ export default {
   border: 0.2rem solid var(--primary-light-3);
   position: absolute;
   transform-origin: center;
-  left: 50%;
+  left: calc(50% - 2.6rem);
 
   &::before {
     content: '';
